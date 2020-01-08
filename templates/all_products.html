@@ -1,0 +1,70 @@
+<!doctype html>
+
+<html>
+<head>
+  <title>Workshop</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <script src="{{ url_for('static', filename='js/jquery-3.4.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+</head>
+    <body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+
+
+  <ul class="navbar-nav">
+    {% if session['role'] == 'admin' %}
+        <li class="nav-item"><a class="nav-link" href="/search">Search</a></li>
+        <li class="nav-item"><a class="nav-link" href="/claster">Claster</a></li>
+        <li class="nav-item"><a class="nav-link" href="/corelation">Corelation</a></li>
+        <li class="nav-item"><a class="nav-link" href="/clasification">Clasification PNN</a></li>
+        <li class="nav-item"><a class="nav-link" href="/products">Products</a></li>
+        <li class="nav-item"><a class="nav-link" href="/store">Country</a></li>
+        <li class="nav-item"><a class="nav-link" href="/recommendation">Recommendation</a></li>
+        <li class="nav-item"><a class="nav-link" href="/characteristic">Characteristic</a></li>
+        <li class="nav-item"><a class="nav-link" href="/dashboard">Dashboard</a></li>
+      {% endif %}
+      {% if session['role'] != 'unlogged' %}
+            <li class="nav-item"><a class="nav-link" href="/search">Search</a></li>
+        {% endif %}
+        {% if session['user_email'] %}
+            <li class="align-self-end" style="margin-left: auto">
+                <a class="nav-link" href="/user/{{ session['user_email'] }}">{{ session['user_email'] }}</a>
+            </li>
+            <li class="align-self-end">
+                <a class="nav-link" href="/logout">logout</a>
+            </li>
+        {% endif %}
+  </ul>
+
+    </nav>
+        <table class="table">
+            <thread class = "thead-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Model</th>
+
+             </tr>
+            {% for item in result %}
+            <tr>
+                <td scope="row">{{ item.product_id }}</td>
+                <td scope="row">{{ item.product_name }}</td>
+                <td scope="row">{{ item.product_model }}</td>
+                <td>
+                    <a href="/edit_product/{{item.product_id}}" type="button" class="btn btn-warning">Edit</a>
+                    <a href="/delete_product/{{item.product_id}}" type="button" class="btn btn-danger">Delete</a>
+                </td>
+             </tr>
+            {% endfor %}
+            </thread>
+        </table>
+
+    <td> <a href="/create_product" type="button" class="btn btn-success">New Product</a> </td>
+
+
+
+    </body>
+</html>
+

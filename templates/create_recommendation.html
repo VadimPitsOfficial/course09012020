@@ -1,0 +1,91 @@
+{% extends "index.html" %}
+ 
+{% block content %}
+ 
+<!--https://www.codeply.com/go/nhbdi2FkJm-->
+ 
+ 
+<div class="col-md-6 mx-auto">
+ 
+    <!-- form card login -->
+    <div class="card rounded-0">
+ 
+        <div class="card-header">
+            <h3 class="mb-0">{{form_name}}</h3>
+        </div>
+        <div class="card-body">
+ 
+            <form class="form"  action = "/create_recommendation" method="POST">
+                {{ form.hidden_tag() }}
+
+
+            <div class="form-group">
+                {{ form.recommendation_id.label }}
+                {{ form.recommendation_id(class_="form-control") }}
+
+                {% if form.recommendation_id.errors%}
+                    <div class="alert alert-danger" role="alert">
+                        {% for message in form.recommendation_id.errors %}
+                             <div>{{ message }}</div>
+                        {% endfor %}
+                    </div>
+                {%endif%}
+            </div>
+
+
+            <div class="form-group">
+                {{ form.recommendation_name.label }}
+                {{ form.recommendation_name(class_="form-control") }}
+ 
+                {% if form.recommendation_name.errors%}
+                    <div class="alert alert-danger" role="alert">
+                        {% for message in form.recommendation_name.errors %}
+                             <div>{{ message }}</div>
+                        {% endfor %}
+                    </div>
+                {%endif%}
+            </div>
+ 
+ 
+            <div class="form-group">
+                {{ form.recommendation_model.label }}
+                {{ form.recommendation_model(class_="form-control") }}
+
+                {% if form.recommendation_model.errors%}
+                    <div class="alert alert-danger" role="alert">
+                        {% for message in form.recommendation_model.errors %}
+                             <div>{{ message }}</div>
+                        {% endfor %}
+                    </div>
+                {%endif%}
+            </div>
+
+
+            <div class="form-group">
+                {{ form.recommendation_price.label }}
+                {{ form.recommendation_price(class_="form-control") }}
+
+                {% if form.recommendation_price.errors%}
+                    <div class="alert alert-danger" role="alert">
+                        {% for message in form.recommendation_price.errors %}
+                             <div>{{ message }}</div>
+                        {% endfor %}
+                    </div>
+                {%endif%}
+            </div>
+ 
+                {{ form.submit(class_="btn btn-success") }}
+            </form>
+        </div>
+        <!--/card-block-->
+    </div>
+    <!-- /form card login -->
+ 
+</div>
+ 
+</div>
+ 
+ 
+ 
+ 
+{% endblock %}

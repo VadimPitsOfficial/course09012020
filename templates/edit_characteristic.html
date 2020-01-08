@@ -1,0 +1,64 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+<!--https://www.codeply.com/go/nhbdi2FkJm-->
+
+
+<div class="col-md-6 mx-auto">
+
+    <!-- form card login -->
+    <div class="card rounded-0">
+
+        <div class="card-header">
+            <h3 class="mb-0">Edit Characteristic ID: {{form_name}}</h3>
+        </div>
+        <div class="card-body">
+
+            <form class="form" method="POST">
+                {{ form.hidden_tag() }}
+
+
+            <div class="form-group">
+                {{ form.characteristic_specification.label }}
+                {{ form.characteristic_specification(class_="form-control") }}
+
+                {% if form.characteristic_specification.errors%}
+                    <div class="alert alert-danger" role="alert">
+                        {% for message in form.characteristic_specification.errors %}
+                             <div>{{ message }}</div>
+                        {% endfor %}
+                    </div>
+                {%endif%}
+            </div>
+
+
+            <div class="form-group">
+                {{ form.characteristic_price.label }}
+                {{ form.characteristic_price(class_="form-control") }}
+
+                {% if form.characteristic_price.errors%}
+                    <div class="alert alert-danger" role="alert">
+                        {% for message in form.characteristic_price.errors %}
+                             <div>{{ message }}</div>
+                        {% endfor %}
+                    </div>
+                {%endif%}
+            </div>
+
+
+                {{ form.submit(class_="btn btn-success") }}
+            </form>
+        </div>
+        <!--/card-block-->
+    </div>
+    <!-- /form card login -->
+
+</div>
+
+</div>
+
+
+
+
+{% endblock %}
